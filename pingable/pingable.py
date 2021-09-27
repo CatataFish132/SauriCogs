@@ -116,5 +116,10 @@ class Pingable(commands.Cog):
             return
         await ctx.message.delete()
         await role.edit(mentionable=True)
-        await ctx.send(f"{role.mention}\n{ctx.author.mention}: {message}")
+        await ctx.send(f"{role.mention}\n{ctx.author.mention}: {message}",
+                allowed_mentions=discord.AllowedMentions(
+                    everyone=False, users=False, roles=[role]
+                ),
+            )
+        await asyncio.sleep(5)
         await role.edit(mentionable=False)
